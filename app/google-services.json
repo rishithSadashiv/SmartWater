@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "334286991483",
+    "firebase_url": "https://smart-city-water-management.firebaseio.com",
+    "project_id": "smart-city-water-management",
+    "storage_bucket": "smart-city-water-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334286991483:android:a3024911ab1beba28432de",
+        "android_client_info": {
+          "package_name": "com.example.smartwater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334286991483-hteh8pkn0o5gjbjsfnq2utq468gjraas.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smartwater",
+            "certificate_hash": "b3460d163e1bc7969ae33d3eb608dd6ee95d4fd4"
+          }
+        },
+        {
+          "client_id": "334286991483-e2gqqo0gr90osq3v21t3si2bfcr7e6e3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-LZsYMjP39yQc-CSqLPEDvfJZ6RLKg6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334286991483-e2gqqo0gr90osq3v21t3si2bfcr7e6e3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
