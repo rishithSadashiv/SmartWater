@@ -2,9 +2,9 @@ package com.example.smartwater;
 
 public class Node {
 
-    String id, lattitude, longitude, location, drillDate, motorInstallationDate, depth, casingLength, pipeInLength,cableLength;
+    String id, lattitude, longitude, location, drillDate, motorInstallationDate, depth, casingLength, pipeInLength, cableLength;
 
-    public Node(){
+    public Node() {
 
     }
 

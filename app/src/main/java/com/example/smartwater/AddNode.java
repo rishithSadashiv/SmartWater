@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AddNode extends AppCompatActivity {
 
     Button addNodeButton;
-    EditText lattitude, longitude,location, drillDate, motorInstallationDate, depth, casingLength, pipeInLength,cableLength;
+    EditText lattitude, longitude, location, drillDate, motorInstallationDate, depth, casingLength, pipeInLength, cableLength;
 
     DatabaseReference databaseNode;
 
@@ -47,11 +47,9 @@ public class AddNode extends AppCompatActivity {
         });
 
 
-
     }
 
-    private void addNode()
-    {
+    private void addNode() {
         String parameter1 = lattitude.getText().toString().trim();
         String parameter2 = longitude.getText().toString().trim();
         String parameter3 = location.getText().toString().trim();
@@ -62,22 +60,17 @@ public class AddNode extends AppCompatActivity {
         String parameter8 = pipeInLength.getText().toString().trim();
         String parameter9 = cableLength.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(parameter1)&&!TextUtils.isEmpty(parameter2)&&!TextUtils.isEmpty(parameter3)&&!TextUtils.isEmpty(parameter4)&&!TextUtils.isEmpty(parameter5)&&!TextUtils.isEmpty(parameter6)&&!TextUtils.isEmpty(parameter7)&&!TextUtils.isEmpty(parameter8)&&!TextUtils.isEmpty(parameter9))
-        {
+        if (!TextUtils.isEmpty(parameter1) && !TextUtils.isEmpty(parameter2) && !TextUtils.isEmpty(parameter3) && !TextUtils.isEmpty(parameter4) && !TextUtils.isEmpty(parameter5) && !TextUtils.isEmpty(parameter6) && !TextUtils.isEmpty(parameter7) && !TextUtils.isEmpty(parameter8) && !TextUtils.isEmpty(parameter9)) {
             String id = databaseNode.push().getKey();
 
-            Node node = new Node(id,parameter1,parameter2,parameter3,parameter4,parameter5,parameter6,parameter7,parameter8,parameter9);
+            Node node = new Node(id, parameter1, parameter2, parameter3, parameter4, parameter5, parameter6, parameter7, parameter8, parameter9);
 
             databaseNode.child(id).setValue(node);
 
-            Toast.makeText(this,"Node added",Toast.LENGTH_LONG).show();
-        }
-        else
-        {
+            Toast.makeText(this, "Node added", Toast.LENGTH_LONG).show();
+        } else {
             Toast.makeText(this, "Fill all inputs", Toast.LENGTH_LONG).show();
         }
-
-
 
 
     }

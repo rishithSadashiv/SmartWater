@@ -16,39 +16,30 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
-public class MainActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
-    Button login;
+    EditText email;
+    EditText password;
     Button signup;
-    EditText email, password;
     ProgressBar progressbar;
 
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_signup);
 
-        signup = findViewById(R.id.buttonSignupLogin);
-        login = findViewById(R.id.buttonLogin);
-        email = findViewById(R.id.editTextEmailLogin);
-        password = findViewById(R.id.editTextPasswordLogin);
-
-        progressbar = findViewById(R.id.progressBarLogin);
+        email = findViewById(R.id.editTextEmailSignup);
+        password = findViewById(R.id.editTextPasswordSignup);
+        signup = findViewById(R.id.buttonSignupSignup);
+        progressbar = findViewById(R.id.progressBarSignup);
 
         mAuth = FirebaseAuth.getInstance();
 
         signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignupActivity.class);
-                MainActivity.this.startActivity(intent);
-            }
-        });
-
-        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -70,43 +61,37 @@ public class MainActivity extends AppCompatActivity {
                     password.requestFocus();
                 } else {
                     progressbar.setVisibility(View.VISIBLE);
-                    mAuth.signInWithEmailAndPassword(e, p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    mAuth.createUserWithEmailAndPassword(e, p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+
                             progressbar.setVisibility(View.GONE);
                             if (task.isSuccessful()) {
                                 finish();
-                                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                                Toast.makeText(getApplicationContext(), "User registered successfully", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
-
                             } else {
-                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+
+                                    Toast.makeText(getApplicationContext(), "This email is already registered", Toast.LENGTH_LONG).show();
+
+                                } else {
+                                    try {
+                                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    } catch (NullPointerException e) {
+                                        e.getStackTrace();
+                                    }
+                                }
                             }
                         }
                     });
+
                 }
 
             }
         });
 
-
-
-
-
-        //make another activity to update Nodes, the code is same as addNode but the id must be the same. If id is same, then the value which is present will be overridden. Else, new id is generated and the values will be assigned to that id
-
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if(mAuth.getCurrentUser() != null)
-        {
-            finish();
-            startActivity(new Intent(this, HomeActivity.class));
-        }
-    }
-
 }
