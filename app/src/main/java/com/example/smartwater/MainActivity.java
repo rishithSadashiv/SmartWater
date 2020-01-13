@@ -91,9 +91,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
         //make another activity to update Nodes, the code is same as addNode but the id must be the same. If id is same, then the value which is present will be overridden. Else, new id is generated and the values will be assigned to that id
 
     }
@@ -102,8 +99,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if(mAuth.getCurrentUser() != null)
-        {
+        if (mAuth.getCurrentUser() != null) {
             finish();
             startActivity(new Intent(this, HomeActivity.class));
         }

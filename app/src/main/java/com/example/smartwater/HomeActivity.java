@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -59,11 +60,15 @@ public class HomeActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String location = spinner.getSelectedItem().toString();
-                String uid = map.get(location);
-                Intent intent = new Intent(HomeActivity.this, NodeControlActivity.class);
-                intent.putExtra("UID", uid);
-                startActivity(intent);
+                try {
+                    String location = spinner.getSelectedItem().toString();
+                    String uid = map.get(location);
+                    Intent intent = new Intent(HomeActivity.this, NodeControlActivity.class);
+                    intent.putExtra("UID", uid);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -78,19 +83,23 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                List<String> list = new ArrayList();
+                try {
+                    List<String> list = new ArrayList();
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String id = snapshot.child("id").getValue(String.class);
-                    String location = snapshot.child("location").getValue(String.class);
-                    map.put(location, id);
-                    list.add(location);
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String id = snapshot.child("id").getValue(String.class);
+                        String location = snapshot.child("location").getValue(String.class);
+                        map.put(location, id);
+                        list.add(location);
+                    }
+
+                    progressBar.setVisibility(View.GONE);
+                    spinner = findViewById(R.id.spinnerHomeActivity);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_spinner_item, list);
+                    spinner.setAdapter(adapter);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
-
-                progressBar.setVisibility(View.GONE);
-                spinner = findViewById(R.id.spinnerHomeActivity);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_spinner_item, list);
-                spinner.setAdapter(adapter);
 
             }
 

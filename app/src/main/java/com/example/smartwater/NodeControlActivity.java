@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,25 +47,30 @@ public class NodeControlActivity extends AppCompatActivity {
         databaseNodes.child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String latitud = dataSnapshot.child("lattitude").getValue().toString();
-                String longitud = dataSnapshot.child("longitude").getValue().toString();
-                String locatio = dataSnapshot.child("location").getValue().toString();
-                String boreDrillDat = dataSnapshot.child("drillDate").getValue().toString();
-                String motorInstallationDat = dataSnapshot.child("motorInstallationDate").getValue().toString();
-                String borewellDept = dataSnapshot.child("depth").getValue().toString();
-                String casingLengt = dataSnapshot.child("casingLength").getValue().toString();
-                String pipeInLengt = dataSnapshot.child("pipeInLength").getValue().toString();
-                String cableLengt = dataSnapshot.child("cableLength").getValue().toString();
+                try {
+                    String latitud = dataSnapshot.child("lattitude").getValue().toString();
+                    String longitud = dataSnapshot.child("longitude").getValue().toString();
+                    String locatio = dataSnapshot.child("location").getValue().toString();
+                    String boreDrillDat = dataSnapshot.child("drillDate").getValue().toString();
+                    String motorInstallationDat = dataSnapshot.child("motorInstallationDate").getValue().toString();
+                    String borewellDept = dataSnapshot.child("depth").getValue().toString();
+                    String casingLengt = dataSnapshot.child("casingLength").getValue().toString();
+                    String pipeInLengt = dataSnapshot.child("pipeInLength").getValue().toString();
+                    String cableLengt = dataSnapshot.child("cableLength").getValue().toString();
 
-                latitude.setText(latitud);
-                longitude.setText(longitud);
-                location.setText(locatio);
-                boreDrillDate.setText(boreDrillDat);
-                motorInstallationDate.setText(motorInstallationDat);
-                borewellDepth.setText(borewellDept);
-                casingLength.setText(casingLengt);
-                pipeInLength.setText(pipeInLengt);
-                cableLength.setText(cableLengt);
+                    latitude.setText(latitud);
+                    longitude.setText(longitud);
+                    location.setText(locatio);
+                    boreDrillDate.setText(boreDrillDat);
+                    motorInstallationDate.setText(motorInstallationDat);
+                    borewellDepth.setText(borewellDept);
+                    casingLength.setText(casingLengt);
+                    pipeInLength.setText(pipeInLengt);
+                    cableLength.setText(cableLengt);
+                }catch (Exception e)
+                {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
 
             }
 
