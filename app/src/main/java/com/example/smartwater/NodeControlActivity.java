@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,13 +29,19 @@ public class NodeControlActivity extends AppCompatActivity {
     static TextView commandGivenTextView, receivedInfoTextView;
 
     static String phoneNumber = "9035633154";
-    static String receivedMessage = "Received Info";
+    static String receivedMessage = "Received Info : ";
 
     Button btn1, btn2, btn3, btn4, btn5;
 
+    Button changeNumber;
+
     public static void updateReceivedMessage(String ob) {
         receivedMessage = ob;
-        receivedInfoTextView.setText(ob);
+        receivedInfoTextView.setText("Received Info : " + ob);
+    }
+
+    public static void updatePhoneNumber(String ob) {
+        phoneNumber = ob;
     }
 
     @Override
@@ -45,7 +50,7 @@ public class NodeControlActivity extends AppCompatActivity {
         setContentView(R.layout.activity_node_control);
 
         intent = getIntent();
-        String uid = intent.getStringExtra("UID");
+        final String uid = intent.getStringExtra("UID");
 
         id = findViewById(R.id.textViewId);
         id.setText(uid);
@@ -69,6 +74,8 @@ public class NodeControlActivity extends AppCompatActivity {
         btn3 = findViewById(R.id.button3);
         btn4 = findViewById(R.id.button4);
         btn5 = findViewById(R.id.button5);
+
+        changeNumber = findViewById(R.id.buttonChangeNumber);
 
 
 
@@ -148,10 +155,18 @@ public class NodeControlActivity extends AppCompatActivity {
 
         receivedInfoTextView.setMovementMethod(new ScrollingMovementMethod());
 
+        changeNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NodeControlActivity.this, ChangeNumber.class);
+                intent.putExtra("UID", uid);
+                intent.putExtra("phoneNumber", phoneNumber);
+                startActivity(intent);
+            }
+        });
 
-        //add a new parameter 'phoneNumber' in database for each node.
-        //add a phone number editText in addNode activity as well.
-        //add phone number textView in NodeControlActivity and display the phone number obtained from database.
+
+        //write code to send sms with current command, decide whether the phone number of user is enough or email uid is required.
 
     }
 

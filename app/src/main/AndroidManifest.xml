@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smartwater">
 
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NodeControlActivity"></activity>
+        <activity android:name=".ChangeNumber"></activity>
+        <activity android:name=".NodeControlActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".AddNode" />
@@ -28,13 +29,10 @@
         <receiver android:name=".SmsReceiver">
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.PHONE_STATE" />
-                <action android:name="PACKAGE_NAME.android.action.broadcast"/>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"></action>
+                <action android:name="PACKAGE_NAME.android.action.broadcast" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-
-
-
     </application>
 
 </manifest>
