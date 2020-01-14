@@ -2,13 +2,13 @@ package com.example.smartwater;
 
 public class Node {
 
-    String id, lattitude, longitude, location, drillDate, motorInstallationDate, depth, casingLength, pipeInLength, cableLength;
+    String id, lattitude, longitude, location, drillDate, motorInstallationDate, depth, casingLength, pipeInLength, cableLength, phoneNumber;
 
     public Node() {
 
     }
 
-    public Node(String id, String lattitude, String longitude, String location, String drillDate, String motorInstallationDate, String depth, String casingLength, String pipeInLength, String cableLength) {
+    public Node(String id, String lattitude, String longitude, String location, String drillDate, String motorInstallationDate, String depth, String casingLength, String pipeInLength, String cableLength, String phoneNumber) {
         this.id = id;
         this.lattitude = lattitude;
         this.longitude = longitude;
@@ -19,6 +19,7 @@ public class Node {
         this.casingLength = casingLength;
         this.pipeInLength = pipeInLength;
         this.cableLength = cableLength;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getId() {
@@ -59,5 +60,9 @@ public class Node {
 
     public String getCableLength() {
         return cableLength;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }

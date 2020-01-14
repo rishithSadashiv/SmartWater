@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AddNode extends AppCompatActivity {
 
     Button addNodeButton;
-    EditText lattitude, longitude, location, drillDate, motorInstallationDate, depth, casingLength, pipeInLength, cableLength;
+    EditText lattitude, longitude, location, drillDate, motorInstallationDate, depth, casingLength, pipeInLength, cableLength, phoneNumber;
 
     DatabaseReference databaseNode;
 
@@ -35,6 +35,7 @@ public class AddNode extends AppCompatActivity {
         casingLength = findViewById(R.id.editTextLength);
         pipeInLength = findViewById(R.id.editTextPipeInLength);
         cableLength = findViewById(R.id.editTextCableLength);
+        phoneNumber = findViewById(R.id.editTextPhoneNumber);
 
         databaseNode = FirebaseDatabase.getInstance().getReference("Nodes"); //create Nodes table in database
 
@@ -59,11 +60,12 @@ public class AddNode extends AppCompatActivity {
         String parameter7 = casingLength.getText().toString().trim();
         String parameter8 = pipeInLength.getText().toString().trim();
         String parameter9 = cableLength.getText().toString().trim();
+        String parameter10 = phoneNumber.getText().toString().trim();
 
         if (!TextUtils.isEmpty(parameter1) && !TextUtils.isEmpty(parameter2) && !TextUtils.isEmpty(parameter3) && !TextUtils.isEmpty(parameter4) && !TextUtils.isEmpty(parameter5) && !TextUtils.isEmpty(parameter6) && !TextUtils.isEmpty(parameter7) && !TextUtils.isEmpty(parameter8) && !TextUtils.isEmpty(parameter9)) {
             String id = databaseNode.push().getKey();
 
-            Node node = new Node(id, parameter1, parameter2, parameter3, parameter4, parameter5, parameter6, parameter7, parameter8, parameter9);
+            Node node = new Node(id, parameter1, parameter2, parameter3, parameter4, parameter5, parameter6, parameter7, parameter8, parameter9, parameter10);
 
             databaseNode.child(id).setValue(node);
 
