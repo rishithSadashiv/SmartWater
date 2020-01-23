@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     Button signup;
     EditText email, password;
     ProgressBar progressbar;
-
     FirebaseAuth mAuth;
 
     @Override
@@ -35,9 +34,7 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.buttonLogin);
         email = findViewById(R.id.editTextEmailLogin);
         password = findViewById(R.id.editTextPasswordLogin);
-
         progressbar = findViewById(R.id.progressBarLogin);
-
         mAuth = FirebaseAuth.getInstance();
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(e).matches()) {
                     email.setError("Please enter valid email");
                     email.requestFocus();
-
                 } else if (p.length() < 6) {
                     password.setError("Minimum password length should be 6");
                     password.requestFocus();
@@ -86,13 +82,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
-
             }
         });
-
-
         //make another activity to update Nodes, the code is same as addNode but the id must be the same. If id is same, then the value which is present will be overridden. Else, new id is generated and the values will be assigned to that id
-
     }
 
     @Override
@@ -104,5 +96,4 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, HomeActivity.class));
         }
     }
-
 }

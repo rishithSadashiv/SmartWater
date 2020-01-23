@@ -5,7 +5,6 @@ public class Node {
     String id, lattitude, longitude, location, drillDate, motorInstallationDate, depth, casingLength, pipeInLength, cableLength, phoneNumber;
 
     public Node() {
-
     }
 
     public Node(String id, String lattitude, String longitude, String location, String drillDate, String motorInstallationDate, String depth, String casingLength, String pipeInLength, String cableLength, String phoneNumber) {

@@ -24,7 +24,6 @@ public class SignupActivity extends AppCompatActivity {
     EditText password;
     Button signup;
     ProgressBar progressbar;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -36,9 +35,7 @@ public class SignupActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextPasswordSignup);
         signup = findViewById(R.id.buttonSignupSignup);
         progressbar = findViewById(R.id.progressBarSignup);
-
         mAuth = FirebaseAuth.getInstance();
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,9 +71,7 @@ public class SignupActivity extends AppCompatActivity {
                                 startActivity(intent);
                             } else {
                                 if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-
                                     Toast.makeText(getApplicationContext(), "This email is already registered", Toast.LENGTH_LONG).show();
-
                                 } else {
                                     try {
                                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -87,11 +82,8 @@ public class SignupActivity extends AppCompatActivity {
                             }
                         }
                     });
-
                 }
-
             }
         });
-
     }
 }

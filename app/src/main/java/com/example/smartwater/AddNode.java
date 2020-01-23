@@ -16,9 +16,7 @@ public class AddNode extends AppCompatActivity {
 
     Button addNodeButton;
     EditText lattitude, longitude, location, drillDate, motorInstallationDate, depth, casingLength, pipeInLength, cableLength, phoneNumber;
-
     DatabaseReference databaseNode;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +37,12 @@ public class AddNode extends AppCompatActivity {
 
         databaseNode = FirebaseDatabase.getInstance().getReference("Nodes"); //create Nodes table in database
 
-
         addNodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addNode();
             }
         });
-
-
     }
 
     private void addNode() {
@@ -64,16 +59,11 @@ public class AddNode extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(parameter1) && !TextUtils.isEmpty(parameter2) && !TextUtils.isEmpty(parameter3) && !TextUtils.isEmpty(parameter4) && !TextUtils.isEmpty(parameter5) && !TextUtils.isEmpty(parameter6) && !TextUtils.isEmpty(parameter7) && !TextUtils.isEmpty(parameter8) && !TextUtils.isEmpty(parameter9)) {
             String id = databaseNode.push().getKey();
-
             Node node = new Node(id, parameter1, parameter2, parameter3, parameter4, parameter5, parameter6, parameter7, parameter8, parameter9, parameter10);
-
             databaseNode.child(id).setValue(node);
-
             Toast.makeText(this, "Node added", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "Fill all inputs", Toast.LENGTH_LONG).show();
         }
-
-
     }
 }

@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 public class SmsReceiver extends BroadcastReceiver {
 
-
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -28,14 +27,10 @@ public class SmsReceiver extends BroadcastReceiver {
                 str += " :";
                 str += msgs[i].getMessageBody();
                 str += "\n";
-
                 message += msgs[i].getMessageBody();
             }
-
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
             NodeControlActivity.updateReceivedMessage(message + "\n");
         }
-
-
     }
 }

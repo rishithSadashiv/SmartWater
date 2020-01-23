@@ -22,17 +22,12 @@ public class NodeControlActivity extends AppCompatActivity {
 
     Intent intent;
     TextView id, latitude, longitude, location, boreDrillDate, motorInstallationDate, borewellDepth, casingLength, pipeInLength, cableLength, phoneNum;
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseNodes = database.getReference("Nodes");
-
     static TextView commandGivenTextView, receivedInfoTextView;
-
     static String phoneNumber = "9035633154";
     static String receivedMessage = "Received Info : ";
-
     Button btn1, btn2, btn3, btn4, btn5;
-
     Button changeNumber;
 
     public static void updateReceivedMessage(String ob) {
@@ -51,10 +46,8 @@ public class NodeControlActivity extends AppCompatActivity {
 
         intent = getIntent();
         final String uid = intent.getStringExtra("UID");
-
         id = findViewById(R.id.textViewId);
         id.setText(uid);
-
         latitude = findViewById(R.id.textViewlatitude);
         longitude = findViewById(R.id.textViewLongitude);
         location = findViewById(R.id.textViewLocation);
@@ -65,19 +58,14 @@ public class NodeControlActivity extends AppCompatActivity {
         pipeInLength = findViewById(R.id.textViewPipeInLength);
         cableLength = findViewById(R.id.textViewCableLength);
         phoneNum = findViewById(R.id.textViewPhoneNUmber);
-
         commandGivenTextView = findViewById(R.id.textViewCommandGiven);
         receivedInfoTextView = findViewById(R.id.textViewReceivedInfo);
-
         btn1 = findViewById(R.id.button1);
         btn2 = findViewById(R.id.button2);
         btn3 = findViewById(R.id.button3);
         btn4 = findViewById(R.id.button4);
         btn5 = findViewById(R.id.button5);
-
         changeNumber = findViewById(R.id.buttonChangeNumber);
-
-
 
         databaseNodes.child(uid).addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,12 +92,10 @@ public class NodeControlActivity extends AppCompatActivity {
                     pipeInLength.setText(pipeInLengt);
                     cableLength.setText(cableLengt);
                     phoneNum.setText(phoneNumbe);
-
                     phoneNumber = phoneNumbe;
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
-
             }
 
             @Override
@@ -171,6 +157,9 @@ public class NodeControlActivity extends AppCompatActivity {
     }
 
     private void sendSMS(String phoneNumber1, String message) {
+
+        //https://developer.android.com/training/permissions/requesting.html
+
         try {
             SmsManager sms = SmsManager.getDefault();
             sms.sendTextMessage(phoneNumber1, null, message, null, null);
