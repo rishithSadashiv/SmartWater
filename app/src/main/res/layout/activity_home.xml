@@ -22,15 +22,15 @@
 
     <Spinner
         android:id="@+id/spinnerHomeActivity"
-        android:layout_width="320dp"
-        android:layout_height="73dp"
-        android:background="#37FDD835"
+        android:layout_width="318dp"
+        android:layout_height="67dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.147" />
+
 
     <TextView
         android:id="@+id/textView6"
@@ -39,10 +39,10 @@
         android:text="Select Borewell:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintVertical_bias="0.082" />
 
     <ProgressBar
         android:id="@+id/progressBarHomeActivity"
@@ -68,5 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.316" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

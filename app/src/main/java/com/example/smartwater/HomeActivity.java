@@ -108,7 +108,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     progressBar.setVisibility(View.GONE);
                     spinner = findViewById(R.id.spinnerHomeActivity);
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_spinner_item, list);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(HomeActivity.this, android.R.layout.simple_spinner_dropdown_item, list);
                     spinner.setAdapter(adapter);
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
