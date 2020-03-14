@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 public class NodeControlActivity extends AppCompatActivity {
 
     Intent intent;
@@ -29,6 +30,8 @@ public class NodeControlActivity extends AppCompatActivity {
     static String receivedMessage = "Received Info : ";
     Button btn1, btn2, btn3, btn4, btn5;
     Button changeNumber;
+
+    // https://www.wikihow.com/Execute-HTTP-POST-Requests-in-Android   try to put switch to select sms or http
 
     public static void updateReceivedMessage(String ob) {
         receivedMessage = ob;
@@ -168,5 +171,6 @@ public class NodeControlActivity extends AppCompatActivity {
             Toast.makeText(NodeControlActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         commandGivenTextView.setText("Sent Text : " + message);
+        receivedInfoTextView.setText("Received Info:");
     }
 }
