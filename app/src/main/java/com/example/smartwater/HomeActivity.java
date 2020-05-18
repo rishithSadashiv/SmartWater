@@ -1,3 +1,4 @@
+// written by Rishith Sadashiv T N
 package com.example.smartwater;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,9 +43,11 @@ public class HomeActivity extends AppCompatActivity {
     ProgressBar progressBar;
     Button addNodeButton;
 
+    Button refresh;
+
     public static final int RequestPermissionCode = 7;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -51,6 +55,8 @@ public class HomeActivity extends AppCompatActivity {
         addNodeButton = findViewById(R.id.buttonAddNode);
         progressBar = findViewById(R.id.progressBarHomeActivity);
         next = findViewById(R.id.buttonNext);
+
+        refresh = findViewById(R.id.btnloginhttp);
 
         addNodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +94,32 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                Thread thread = new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try  {
+                            //Your code goes here
+                            String response = HttpRequest.login();
+                            //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                thread.start();
+
+            }
+        });
+
     }
 
     private void getSpinnerValues() {

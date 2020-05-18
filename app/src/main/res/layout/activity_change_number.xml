@@ -26,7 +26,7 @@
         android:id="@+id/textView4"
         android:layout_width="229dp"
         android:layout_height="36dp"
-        android:text="Enter_new_number"
+        android:text="Enter New Number:"
         android:textColor="#05668d"
         android:textSize="24sp"
         android:textStyle="bold"

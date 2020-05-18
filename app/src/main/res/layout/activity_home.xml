@@ -7,6 +7,16 @@
     tools:context=".HomeActivity">
 
     <Button
+        android:id="@+id/btnloginhttp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/buttonAddNode"
         android:layout_width="133dp"
         android:layout_height="67dp"
@@ -20,6 +30,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.959" />
 
+
     <Spinner
         android:id="@+id/spinnerHomeActivity"
         android:layout_width="318dp"
@@ -29,14 +40,15 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.147" />
-
+        app:layout_constraintVertical_bias="0.197" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="198dp"
-        android:layout_height="26dp"
+        android:layout_width="263dp"
+        android:layout_height="41dp"
         android:text="Select Borewell:"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.201"

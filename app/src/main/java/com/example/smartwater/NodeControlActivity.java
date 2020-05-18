@@ -1,3 +1,4 @@
+// Written By: Rishith Sadashiv T N
 package com.example.smartwater;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.telephony.SmsManager;
@@ -31,6 +33,8 @@ public class NodeControlActivity extends AppCompatActivity {
     Button btn1, btn2, btn3, btn4, btn5;
     Button changeNumber;
 
+    Switch httpSwitch;
+
     // https://www.wikihow.com/Execute-HTTP-POST-Requests-in-Android   try to put switch to select sms or http
 
     public static void updateReceivedMessage(String ob) {
@@ -50,7 +54,7 @@ public class NodeControlActivity extends AppCompatActivity {
         intent = getIntent();
         final String uid = intent.getStringExtra("UID");
         id = findViewById(R.id.textViewId);
-        id.setText(uid);
+        //id.setText(uid);
         latitude = findViewById(R.id.textViewlatitude);
         longitude = findViewById(R.id.textViewLongitude);
         location = findViewById(R.id.textViewLocation);
@@ -69,6 +73,8 @@ public class NodeControlActivity extends AppCompatActivity {
         btn4 = findViewById(R.id.button4);
         btn5 = findViewById(R.id.button5);
         changeNumber = findViewById(R.id.buttonChangeNumber);
+
+        httpSwitch = findViewById(R.id.switchHTTP);
 
         databaseNodes.child(uid).addValueEventListener(new ValueEventListener() {
             @Override
@@ -110,35 +116,35 @@ public class NodeControlActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSMS(phoneNumber, "1");
+                sendSMS(phoneNumber, "3");
             }
         });
 
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSMS(phoneNumber, "2");
+                sendSMS(phoneNumber, "4");
             }
         });
 
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSMS(phoneNumber, "3");
+                sendSMS(phoneNumber, "5");
             }
         });
 
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSMS(phoneNumber, "4");
+                sendSMS(phoneNumber, "6");
             }
         });
 
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSMS(phoneNumber, "5");
+                sendSMS(phoneNumber, "7");
             }
         });
 
@@ -163,14 +169,111 @@ public class NodeControlActivity extends AppCompatActivity {
 
         //https://developer.android.com/training/permissions/requesting.html
 
-        try {
-            SmsManager sms = SmsManager.getDefault();
-            sms.sendTextMessage(phoneNumber1, null, message, null, null);
+        if (httpSwitch.isChecked()) {
+            if(message.equals("3")){
+                System.out.println(message);
+                Thread thread = new Thread(new Runnable() {
 
-        } catch (Exception e) {
-            Toast.makeText(NodeControlActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void run() {
+                        try  {
+                            //Your code goes here
+                            //HttpRequest.login();
+                            String response = HttpRequest.sendCmd(location.getText().toString(), "3", "start");
+                            receivedInfoTextView.setText("Received Info: "+response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                thread.start();
+
+            }
+            else if(message.equals("4")){
+                Thread thread = new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try  {
+                            //Your code goes here
+                            //HttpRequest.login();
+                            String response = HttpRequest.sendCmd(location.getText().toString(), "4", "stop");
+                            receivedInfoTextView.setText("Received Info: "+response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                thread.start();
+            }
+            else if(message.equals("5"))
+            {
+                Thread thread = new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try  {
+                            //Your code goes here
+                            //HttpRequest.login();
+                            String response = HttpRequest.sendCmd(location.getText().toString(), "5", "status");
+                            receivedInfoTextView.setText("Received Info: "+response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                thread.start();
+            }
+            else if(message.equals("6"))
+            {
+                Thread thread = new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try  {
+                            //Your code goes here
+                            //HttpRequest.login();
+                            String response = HttpRequest.sendCmd(location.getText().toString(), "6", "increase");
+                            receivedInfoTextView.setText("Received Info: " + response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                thread.start();
+            }
+            else{
+                Thread thread = new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try  {
+                            //Your code goes here
+                            //HttpRequest.login();
+                            String response = HttpRequest.sendCmd(location.getText().toString(), "7", "decrease");
+                            receivedInfoTextView.setText("Received Info:" + response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                thread.start();
+            }
+        } else {
+            try {
+                SmsManager sms = SmsManager.getDefault();
+                sms.sendTextMessage(phoneNumber1, null, message, null, null);
+
+            } catch (Exception e) {
+                Toast.makeText(NodeControlActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+            receivedInfoTextView.setText("Received Info:");
         }
         commandGivenTextView.setText("Sent Text : " + message);
-        receivedInfoTextView.setText("Received Info:");
     }
 }
