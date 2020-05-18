@@ -23,6 +23,14 @@ import java.util.List;
 
 public class HttpRequest extends AsyncTask {
 
+    // reference for this class
+    //http://www.onlymobilepro.com/2013/03/16/submitting-android-form-data-via-post-method/
+    //https://stackoverflow.com/questions/32153318/httpclient-wont-import-in-android-studio
+    //https://stackoverflow.com/questions/50461881/java-lang-noclassdeffounderrorfailed-resolution-of-lorg-apache-http-protocolve
+    //https://stackoverflow.com/questions/6343166/how-to-fix-android-os-networkonmainthreadexception
+    //https://stackoverflow.com/questions/14024625/how-to-get-httpclient-returning-status-code-and-response-body
+    //https://stackoverflow.com/questions/13743205/how-to-add-set-and-get-header-in-request-of-httpclient
+    //https://stackoverflow.com/questions/4727114/illegalstateexception-content-has-been-consumed
 
     @Override
     protected Object doInBackground(Object[] objects) {

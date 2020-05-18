@@ -30,7 +30,8 @@ public class NodeControlActivity extends AppCompatActivity {
     static TextView commandGivenTextView, receivedInfoTextView;
     static String phoneNumber = "9035633154";
     static String receivedMessage = "Received Info : ";
-    Button btn1, btn2, btn3, btn4, btn5;
+    Button btn1, btn2, btn3;
+    //Button btn4, btn5;
     Button changeNumber;
 
     Switch httpSwitch;
@@ -70,8 +71,8 @@ public class NodeControlActivity extends AppCompatActivity {
         btn1 = findViewById(R.id.button1);
         btn2 = findViewById(R.id.button2);
         btn3 = findViewById(R.id.button3);
-        btn4 = findViewById(R.id.button4);
-        btn5 = findViewById(R.id.button5);
+        //btn4 = findViewById(R.id.button4);
+        //btn5 = findViewById(R.id.button5);
         changeNumber = findViewById(R.id.buttonChangeNumber);
 
         httpSwitch = findViewById(R.id.switchHTTP);
@@ -134,19 +135,19 @@ public class NodeControlActivity extends AppCompatActivity {
             }
         });
 
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendSMS(phoneNumber, "6");
-            }
-        });
+//        btn4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                sendSMS(phoneNumber, "6");
+//            }
+//        });
 
-        btn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendSMS(phoneNumber, "7");
-            }
-        });
+//        btn5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                sendSMS(phoneNumber, "7");
+//            }
+//        });
 
         receivedInfoTextView.setMovementMethod(new ScrollingMovementMethod());
 
